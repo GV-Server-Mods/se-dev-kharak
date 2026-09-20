@@ -52,3 +52,4 @@ Add the skill path or import the directory into your agent's custom skills / pro
 ## License
 
 MIT License — see [LICENSE](./LICENSE) for details.
+
