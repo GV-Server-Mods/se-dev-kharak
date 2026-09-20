@@ -31,6 +31,12 @@ The skill partitions deep server lore, gameplay systems, and low-level engine en
 
 ---
 
+## Versioning & Release Policy
+
+This project strictly adheres to **Semantic Versioning (`MAJOR.MINOR.PATCH`)**. For full details on when releases qualify for Patch, Minor, or Major bumps, see [VERSIONING.md](VERSIONING.md).
+
+---
+
 ## Installation
 
 ### Antigravity / Gemini CLI
