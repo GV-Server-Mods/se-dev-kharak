@@ -20,6 +20,7 @@ Engineering handbook, server context, ModAPI/Torch standards, and SBC/ModAdjuste
 
 ## Reference Links & Sources of Truth
 
+- **Issue Tracker (Hub)**: All GVK issues live in `GV-Server-Mods/GVK-Settings`, including Kharak-specific bugs in shared repos (always `gh issue ... -R GV-Server-Mods/GVK-Settings`). Kharak-only repos have Issues disabled; shared `GV-*` repos and plugins keep their own trackers. Board: org project "GVK Server" (#1). Labels, Component field, season milestones, and old-issue mapping: `Docs/agents/` in GVK-Settings.
 - **Steam Server Rules & Gameplay Guide**: https://steamcommunity.com/sharedfiles/filedetails/?id=2781522559
 - **Steam Workshop Mod Collection**: https://steamcommunity.com/sharedfiles/filedetails/?id=2650582206
 - **Known solutions to common crashes or errors**: https://spaceengineers.wiki.gg/wiki/Modding/Reference/Known_Solutions_to_crashes_or_errors
