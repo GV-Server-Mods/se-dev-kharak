@@ -24,6 +24,12 @@
   - `SOBAN` (Kiith Soban, Founder: Soban the Red, Neutral mining Kiith)
   - `KHAANEPH` (Khaaneph Scavengers, Clanless southern nomads)
   - Players/Factions choose one-time alignment via `/alliance SOBAN` or `/alliance KHAANEPH`. Territory dynamically expands/contracts based on mission completions and asset destruction.
+  - **Territory size** follows each alliance's Influence (`SOBAN_Influence`, `KHAANEPH_Influence`; clamped to 0-1200): under 200 = 10 km, 200-399 = 20 km, 400-599 = 30 km, 600-799 = 40 km, 800-999 = 50 km, 1000 and up = 55 km. Implemented in GVK-Derelicts `GVK-Alliance-Events-ZoneSize.sbc`; every change is announced in chat with its direction.
+- **NPC faction relations** (set at world build, see §11):
+  - Friendly: GAALSIEN-KOTH, KHAANEPH-KOTH, SOBAN-KOTH.
+  - Enemy: COALITION-GAALSIEN, KHAANEPH-SOBAN, DERELICT-GAALSIEN.
+  - Neutral: DERELICT-COALITION, DERELICT-SOBAN, DERELICT-KHAANEPH.
+  - These cover turrets. MES targeting gets the same result from GVK-Derelicts' target profiles, which skip the neutral factions by tag.
 
 ---
 
@@ -39,6 +45,7 @@
   - Medium defended wrecks, cargo ships, and ancient relics. Large-scale production unlocked.
 - **Zone 3 (> 50km)**: Deep Desert / Gaalsien Heart.
   - Heavy military wrecks, Gaalsien convoys/cruisers, relic ammo, and Data Cores. Full uncapped production and warfare.
+- **Alliance territory vs Zone 0**: the SOBAN territory centre is 37.2 km and KHAANEPH 47.0 km from Crossroads Tower, so their 40-55 km tiers overlap the starter hub. NPC spawning there stays COALITION-only, but hub players see the alliances' territory enter/leave messages.
 
 ---
 
@@ -111,3 +118,16 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 - **Grid Defender**: Torch collision plugin suppressing collision damage for grids > 50/100 blocks at < 50 m/s, while preserving high-speed player-made missile kinetic/explosive damage.
 - **Dynamic Beacon Signatures**: Beacon range scales dynamically (500m up to max) based on mass, speed, weapon tech, and weather. Grids >= 20k blocks marked as `TopGrid` globally.
 
+---
+
+## 11. Season Operations (Admin)
+- **World build:**
+  - Set the NPC faction relations from §3 with the CrunchUtils Torch plugin ([TheCrunchy/CrunchUtils](https://github.com/TheCrunchy/CrunchUtils), `Commands.cs`, checked at 23dfcdc). Admin only.
+    - `!faction rep change <TagA> <TagB> <amount>` sets (doesn't add) the faction-to-faction reputation: 1500 friendly, 0 neutral, -1500 hostile. Example: `!faction rep change GAALSIEN KOTH 1500`.
+    - `!faction rep <TagA> <TagB>` shows the current value and relation (any player can use it).
+    - Never use `all` as `<TagB>`: it sets `<TagA>`'s reputation with every faction and every player identity.
+    - `!player rep change` ignores its amount and always sets 1500.
+  - Keep `SpawnStaticTown` false while clearing static grids, so they don't all respawn at once; set it true once the trade stations have spawned.
+  - Sandbox booleans are set with `/MES.Debug.ChangeBool.<Name>.<true|false>`; GVK-Derelicts' README lists which encounters read each one.
+- **About 1-2 weeks into the season:** turn on `LargeWrecksEnabled`.
+- **SEDB (Discord bridge):** when SEDB relays server messages, it also picks up MES chat sent with `SendToAllPlayers`. To keep NPC chatter out of Discord, use `[SendToAllOnlinePlayers:false]`, `[IgnoreAntennaRequirement:true]` and a very large override range.

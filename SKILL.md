@@ -60,7 +60,7 @@ Read the specific reference document needed for your current task:
 
 | Reference Document | Key Topics Covered |
 | :--- | :--- |
-| **[references/server-context.md](./references/server-context.md)** | Factions, dynamic alliances, zone details, grid classes (UPs/MPs), siege mechanics, KOTH encounters, cleanup cadence, economy (CUs/RUs/scrap), custom logistics (MnM, pipelines, static drills, Grid Defender, dynamic beacons). |
+| **[references/server-context.md](./references/server-context.md)** | Factions, dynamic alliances, zone details, grid classes (UPs/MPs), siege mechanics, KOTH encounters, cleanup cadence, economy (CUs/RUs/scrap), custom logistics (MnM, pipelines, static drills, Grid Defender, dynamic beacons), alliance territory sizes and NPC faction relations, season operations (world build, sandbox switches, SEDB). |
 | **[references/modapi-standards.md](./references/modapi-standards.md)** | Physics/Havok/Clang mitigation, 60 TPS sim-speed, multiplayer sync, Torch PatchManager vs Harmony, zero empty catch rule, SE type system, DamageSystem hot-path, memory leaks, PCU authorship, bitmap fonts, async disk I/O, Torch RPC. |
 | **[references/sbc-conventions.md](./references/sbc-conventions.md)** | SBC naming (`CubeBlocks_*.sbc` vs `GVK_*.sbc`), single `<SubtypeId>` rule, ModAdjuster folder layout & rules, DefExtAPI vs ModAdjuster, C# XML doc standards, Comment & Documentation Budget. |
 
