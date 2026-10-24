@@ -25,11 +25,19 @@
   - `KHAANEPH` (Khaaneph Scavengers, Clanless southern nomads)
   - Players/Factions choose one-time alignment via `/alliance SOBAN` or `/alliance KHAANEPH`. Territory dynamically expands/contracts based on mission completions and asset destruction.
   - **Territory size** follows each alliance's Influence (`SOBAN_Influence`, `KHAANEPH_Influence`; clamped to 0-1200): under 200 = 10 km, 200-399 = 20 km, 400-599 = 30 km, 600-799 = 40 km, 800-999 = 50 km, 1000 and up = 55 km. Implemented in GVK-Derelicts `GVK-Alliance-Events-ZoneSize.sbc`; every change is announced in chat with its direction.
-- **NPC faction relations** (set at world build, see §11):
-  - Friendly: GAALSIEN-KOTH, KHAANEPH-KOTH, SOBAN-KOTH.
-  - Enemy: COALITION-GAALSIEN, KHAANEPH-SOBAN, DERELICT-GAALSIEN.
-  - Neutral: DERELICT-COALITION, DERELICT-SOBAN, DERELICT-KHAANEPH.
-  - These cover turrets. MES targeting gets the same result from GVK-Derelicts' target profiles, which skip the neutral factions by tag.
+- **NPC faction relations** (faction-to-faction, set at world build with the commands in §11). Turrets (vanilla and WeaponCore) use these, and a pair with none set counts as Enemies, so set all 15:
+
+  | Pair | Value |
+  |---|---|
+  | GAALSIEN with COALITION, SOBAN, KHAANEPH, DERELICT | -1500 (Enemy) |
+  | SOBAN with KHAANEPH | -1500 (Enemy) |
+  | COALITION with SOBAN, KHAANEPH | 1500 (Friendly) |
+  | DERELICT with COALITION, SOBAN, KHAANEPH | 0 (Neutral) |
+  | KOTH with GAALSIEN, COALITION, SOBAN, KHAANEPH, DERELICT | 0 (Neutral) |
+
+  - **KOTH is Neutral to everyone, players included** (static, `StartingReputation` 0). Its weapons that have WeaponCore's Neutrals setting on fire on any grid that breaks that site's rules, NPC or player; which weapons have it on differs per site. Every other NPC prefab keeps Neutrals off so nothing NPC fires on KOTH or on DERELICT.
+- **Identity reputation** (GVK-Settings `Factions.sbc`, what MES reads): MES rates another NPC's grid from the target owner's own reputation with its faction, not the table above. COALITION is static at 500 (Neutral to MES, Friendly to players in vanilla); GAALSIEN and DERELICT are static at -1500; SOBAN and KHAANEPH start everyone at -1500 and stay non-static so AllianceRepHelper can set player reputation; KOTH is static at 0. GVK-Derelicts target profiles skip the factions each one leaves alone by tag, and its override profiles handle forced targets (GVK-Derelicts README note 47).
+- **Players and alliances** (AllianceRepHelper, workshop 3660799548, config in the world's `Storage\3660799548.sbm_AllianceRepHelper\AllianceRepHelper.cfg`): a new player faction gets -600 with SOBAN and KHAANEPH; `/alliance <TAG>` sets +1500 with the chosen one and -1500 with the other, for the faction and every member; a joining member copies the faction's values. World setting `ReputationDecayRate` is 0, so nothing decays.
 
 ---
 
@@ -123,7 +131,25 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 ## 11. Season Operations (Admin)
 - **World build:**
   - Set the NPC faction relations from §3 with the CrunchUtils Torch plugin ([TheCrunchy/CrunchUtils](https://github.com/TheCrunchy/CrunchUtils), `Commands.cs`, checked at 23dfcdc). Admin only.
-    - `!faction rep change <TagA> <TagB> <amount>` sets (doesn't add) the faction-to-faction reputation: 1500 friendly, 0 neutral, -1500 hostile. Example: `!faction rep change GAALSIEN KOTH 1500`.
+    - `!faction rep change <TagA> <TagB> <amount>` sets (doesn't add) the faction-to-faction reputation: 1500 friendly, 0 neutral, -1500 hostile. The 15 commands for §3:
+      ```
+      !faction rep change GAALSIEN COALITION -1500
+      !faction rep change GAALSIEN SOBAN -1500
+      !faction rep change GAALSIEN KHAANEPH -1500
+      !faction rep change GAALSIEN DERELICT -1500
+      !faction rep change SOBAN KHAANEPH -1500
+      !faction rep change COALITION SOBAN 1500
+      !faction rep change COALITION KHAANEPH 1500
+      !faction rep change DERELICT COALITION 0
+      !faction rep change DERELICT SOBAN 0
+      !faction rep change DERELICT KHAANEPH 0
+      !faction rep change KOTH GAALSIEN 0
+      !faction rep change KOTH COALITION 0
+      !faction rep change KOTH SOBAN 0
+      !faction rep change KOTH KHAANEPH 0
+      !faction rep change KOTH DERELICT 0
+      ```
+    - To check all of them at once, save the world and run se-dev-mes `scripts/save_relations.py <world>\Sandbox.sbc`.
     - `!faction rep <TagA> <TagB>` shows the current value and relation (any player can use it).
     - Never use `all` as `<TagB>`: it sets `<TagA>`'s reputation with every faction and every player identity.
     - `!player rep change` ignores its amount and always sets 1500.
