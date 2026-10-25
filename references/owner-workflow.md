@@ -9,6 +9,7 @@ How the GVK server owner wants upstream MES work, in-game tests and GVK project 
 ### When an MES change counts as available
 - **Merged into MeridiusIX master is enough.** GVK content may rely on it, and the `se-dev-mes` tag cache and docs may include it, labelled "master after <version>". It doesn't have to be on the Workshop yet.
 - **Never build on an unmerged PR or fork branch**, in GVK content or in `se-dev-mes`. Rebuild the tag cache from `upstream/master`, not from the local clone's current PR branch.
+  - Exception, only when the owner names the PR: GVK content may use it while it waits, and the local MES clone must run a branch that has it. Now: MES #453 (`LimitPitchTurning`, approved in #450), since 2026-10-25. Remove the entry once it merges.
 - When GVK content needs a master-only change, say so in the commit or README note: a server on the Workshop MES won't have it until the next release.
 
 ### Posting
@@ -16,13 +17,13 @@ How the GVK server owner wants upstream MES work, in-game tests and GVK project 
 - Settle ambiguous causes with a code check, not an in-game test, then report and wait.
 
 ### Issue, PR and comment text
-- **No code blocks**, not even the proposed change: describe it in a sentence and link where it goes. Two or three permalinks at most.
+- **Light on code**: two or three code permalinks per post at most, and no more than a couple of backticked snippets in one sentence. A short snippet of the proposed change is fine.
 - **Short**: about 100 words for an issue, one sentence per point (problem, link, sibling link, seen in game, fix plus severity, PR offer).
 - **Titles** are short and named for what a modder sees, not code internals ("RecolorGrid action can fail after part of the grid breaks off").
 - **Bullets** are one short line each. If a point needs several sentences, give it a plain sentence after the list. Never put a permalink inside a bullet.
 - **Write for a maintainer who wasn't part of the test**: name the target and setup up front ("with my character as the target"), not "the grid's side of me".
 - **Plain language** over precise jargon: one sentence per difference the reader needs ("rounds both colors to 3 decimals, so a typed 0.333 matches a block saved as 0.333333343").
-- Inline backticks for tag names are fine in moderation: mark the tags the reader needs to spot, leave repeats plain.
+- Backtick the tags the reader needs to spot; leave repeats plain.
 - In a comment on someone else's issue, leave links out when the explanation already makes the point.
 - Separate the smallest fix from your preferred one when proposing more than the minimum ("The smallest fix would be X. I'd propose this instead: ...").
 
