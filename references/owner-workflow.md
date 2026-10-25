@@ -54,5 +54,6 @@ How the GVK server owner wants upstream MES work, in-game tests and GVK project 
 ## 3. Project Rules
 
 - **Zones**: the `[MES Zone]` profiles in GVK-Derelicts (`GVK-Universal-Zone.sbc`) are the source of truth for Z0-Z3. The zone nav HUD and any other display follow them; when they disagree, change the display.
+- **No relative dampening on aircraft escorts**: `[EscortUsesRelativeDampening:]` stays `false` on aircraft autopilots. With it on, a wing that passes its slot turns around and flies backwards to reach it, which looks ridiculous (decided around 2026-10-18).
 - **Server not in production** (as of 2026-10-11): rename spawn groups, behaviors, prefabs and IDs outright, with no legacy aliases or "next wipe" deferrals. Mention a real save-compatibility consequence in one line if it matters for launch. Re-check only if the owner says the server is live.
 - **Hub issues**: record a settled decision on its issue in the same session (comment or tick the box). Add every player-facing change to the season's Steam guide issue (Season 11: GV-Server-Mods/GVK-Settings#645) and say so in the reply.
