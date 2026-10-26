@@ -92,7 +92,7 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 ---
 
 ## 7. KOTH (King of the Hill) Encounters
-- **Sites**: Khar Toba (Z3, all grids), Kalash Site (Z3, small grids), Crashed Starship (Z2, small rovers).
+- **Sites**: Khar Toba (Z3, all grids), Kalash Site (Z3, small grids), Crashed Starship (Z3, small rovers; just inside the Z3 sphere, checked in game 2026-10-26).
 - **Anti-Abuse Restrictions**:
   - `KOTHNoThrusters_*.cs`: Shuts off non-NPC thrusters within 3km.
   - `KOTHNoLargeGrid_*.cs`: Shuts off large grid power within 3km.
@@ -108,7 +108,7 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
   - Server cleanup every 1 hour (deletes any grid without a beacon).
   - Debris sweep every 30 mins (deletes splits < 3 blocks instantly).
   - Floating objects and ejected connector items deleted immediately.
-- **Auto-Hangar**: Inactive faction grids auto-stored after 8–14 days.
+- **Auto-Hangar**: Inactive faction grids auto-stored 8 days after the last member logged off (an owner setting; may change).
 
 ---
 

@@ -50,7 +50,7 @@ Engineering handbook, server context, ModAPI/Torch standards, and SBC/ModAdjuste
   - **Zone 2 (35 – 50 km)**: Contested Desert. Medium derelicts, large-scale production unlocked.
   - **Zone 3 (> 50 km)**: Deep Desert / Gaalsien Heart. Heavy military wrecks, Gaalsien convoys, full uncapped warfare.
 - **Shield Generators**: 250m radius, 1W power, non-siegable in Z0, siegable in Z1–Z3 (30-min drain, 15-min recharge, requires 100 Siege Chips).
-- **KOTH Sites**: Khar Toba (Z3, all grids), Kalash Site (Z3, small grids), Crashed Starship (Z2, small rovers). 3km thruster and large grid shutoffs.
+- **KOTH Sites**: Khar Toba (Z3, all grids), Kalash Site (Z3, small grids), Crashed Starship (Z3, just inside the sphere; small rovers). 3km thruster and large grid shutoffs.
 
 ---
 
@@ -63,5 +63,6 @@ Read the specific reference document needed for your current task:
 | **[references/server-context.md](./references/server-context.md)** | Factions, dynamic alliances, zone details, grid classes (UPs/MPs), siege mechanics, KOTH encounters, cleanup cadence, economy (CUs/RUs/scrap), custom logistics (MnM, pipelines, static drills, Grid Defender, dynamic beacons), alliance territory sizes and NPC faction relations, season operations (world build, sandbox switches, SEDB). |
 | **[references/modapi-standards.md](./references/modapi-standards.md)** | Physics/Havok/Clang mitigation, 60 TPS sim-speed, multiplayer sync, Torch PatchManager vs Harmony, zero empty catch rule, SE type system, DamageSystem hot-path, memory leaks, PCU authorship, bitmap fonts, async disk I/O, Torch RPC. |
 | **[references/sbc-conventions.md](./references/sbc-conventions.md)** | SBC naming (`CubeBlocks_*.sbc` vs `GVK_*.sbc`), single `<SubtypeId>` rule, ModAdjuster folder layout & rules, DefExtAPI vs ModAdjuster, C# XML doc standards, Comment & Documentation Budget. |
+| **GVK Wiki** (`C:\Users\blayl\source\repos\gvk-wiki`, private; read `index.md` first) | History, decisions and their reasons, season plans, detailed system pages, what the Steam guide gets wrong. This skill keeps the short current-state summary; when a current fact changes, update both in the same session (rules in the wiki's `AGENTS.md`). |
 | **[references/owner-workflow.md](./references/owner-workflow.md)** | **Read before any MES upstream post or in-game test.** When MES changes count as available, posting rules, issue/PR/review style, PR code comments, review commits; in-game test setup and the NPC Dev test world; zones, renames, hub issue and Steam guide rules. |
 
