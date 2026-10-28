@@ -9,7 +9,7 @@ How the GVK server owner wants upstream MES work, in-game tests and GVK project 
 ### When an MES change counts as available
 - **Merged into MeridiusIX master is enough.** GVK content may rely on it, and the `se-dev-mes` tag cache and docs may include it, labelled "master after <version>". It doesn't have to be on the Workshop yet.
 - **Never build on an unmerged PR or fork branch**, in GVK content or in `se-dev-mes`. Rebuild the tag cache from `upstream/master`, not from the local clone's current PR branch.
-  - Exception, only when the owner names the PR: GVK content may use it while it waits, and the local MES clone must run a branch that has it. Now: MES #453 (`LimitPitchTurning`, approved in #450), since 2026-10-25. Remove the entry once it merges.
+  - Exception, only when the owner names the PR: GVK content may use it while it waits, and the local MES clone must run a branch that has it. Now: none (MES #453, `LimitPitchTurning`, merged on 2026-10-26). Add the PR here while it waits, remove it once it merges.
 - When GVK content needs a master-only change, say so in the commit or README note: a server on the Workshop MES won't have it until the next release.
 
 ### Posting

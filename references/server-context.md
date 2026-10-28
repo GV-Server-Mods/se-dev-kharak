@@ -25,7 +25,7 @@
   - `KHAANEPH` (Khaaneph Scavengers, Clanless southern nomads)
   - Players/Factions choose one-time alignment via `/alliance SOBAN` or `/alliance KHAANEPH`. Territory dynamically expands/contracts based on mission completions and asset destruction.
   - **Territory size** follows each alliance's Influence (`SOBAN_Influence`, `KHAANEPH_Influence`; clamped to 0-1200): under 200 = 10 km, 200-399 = 20 km, 400-599 = 30 km, 600-799 = 40 km, 800-999 = 50 km, 1000 and up = 55 km. Implemented in GVK-Derelicts `GVK-Alliance-Events-ZoneSize.sbc`; every change is announced in chat with its direction.
-- **NPC faction relations** (faction-to-faction, set at world build with the commands in §11). Turrets (vanilla and WeaponCore) use these, and a pair with none set counts as Enemies, so set all 15:
+- **NPC faction relations** (faction-to-faction, set at world build with the commands in §11). Turrets (vanilla and WeaponCore) use these, and so does MES when it rates one NPC against another (MES master after 2.75.02, `67320b7`, PR #461). A pair with none set counts as Enemies, so set all 15:
 
   | Pair | Value |
   |---|---|
@@ -36,7 +36,7 @@
   | KOTH with GAALSIEN, COALITION, SOBAN, KHAANEPH, DERELICT | 0 (Neutral) |
 
   - **KOTH is Neutral to everyone, players included** (static, `StartingReputation` 0). Its weapons that have WeaponCore's Neutrals setting on fire on any grid that breaks that site's rules, NPC or player; which weapons have it on differs per site. Every other NPC prefab keeps Neutrals off so nothing NPC fires on KOTH or on DERELICT.
-- **Identity reputation** (GVK-Settings `Factions.sbc`, what MES reads): MES rates another NPC's grid from the target owner's own reputation with its faction, not the table above. COALITION is static at 500 (Neutral to MES, Friendly to players in vanilla); GAALSIEN and DERELICT are static at -1500; SOBAN and KHAANEPH start everyone at -1500 and stay non-static so AllianceRepHelper can set player reputation; KOTH is static at 0. GVK-Derelicts target profiles skip the factions each one leaves alone by tag, and its override profiles handle forced targets (GVK-Derelicts README note 47).
+- **Identity reputation** (GVK-Settings `Factions.sbc`, what MES reads when an NPC rates a player; NPC-vs-NPC uses the table above): COALITION is static at 500 (Friendly to players, to the game and to MES since `67320b7`, PR #460); GAALSIEN and DERELICT are static at -1500; SOBAN and KHAANEPH start everyone at -1500 and stay non-static so AllianceRepHelper can set player reputation; KOTH is static at 0. GVK-Derelicts target profiles skip the factions each one leaves alone by tag, and its override profiles handle forced targets (GVK-Derelicts README note 47).
 - **Players and alliances** (AllianceRepHelper, workshop 3660799548, config in the world's `Storage\3660799548.sbm_AllianceRepHelper\AllianceRepHelper.cfg`): a new player faction gets -600 with SOBAN and KHAANEPH; `/alliance <TAG>` sets +1500 with the chosen one and -1500 with the other, for the faction and every member; a joining member copies the faction's values. World setting `ReputationDecayRate` is 0, so nothing decays.
 
 ---
