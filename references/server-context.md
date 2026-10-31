@@ -25,7 +25,7 @@
   - `KHAANEPH` (Khaaneph Scavengers, Clanless southern nomads)
   - Players/Factions choose one-time alignment via `/alliance SOBAN` or `/alliance KHAANEPH`. Territory dynamically expands/contracts based on mission completions and asset destruction.
   - **Territory size** follows each alliance's Influence (`SOBAN_Influence`, `KHAANEPH_Influence`; clamped to 0-1200): under 200 = 10 km, 200-399 = 20 km, 400-599 = 30 km, 600-799 = 40 km, 800-999 = 50 km, 1000 and up = 55 km. Implemented in GVK-Derelicts `GVK-Alliance-Events-ZoneSize.sbc`; every change is announced in chat with its direction.
-- **NPC faction relations** (faction-to-faction, set at world build with the commands in §11). Turrets (vanilla and WeaponCore) use these, and so does MES when it rates one NPC against another (MES master after 2.75.02, `67320b7`, PR #461). A pair with none set counts as Enemies, so set all 15:
+- **NPC faction relations** (faction-to-faction, set at world build with the commands in §11). Turrets (vanilla and WeaponCore) use these, and so does MES when it rates one NPC against another, including fixed-gun line of fire and attacker conditions (MES master after 2.75.02, `49b3380`, PR #461 and PR #463). A pair with none set counts as Enemies, so set all 15:
 
   | Pair | Value |
   |---|---|
