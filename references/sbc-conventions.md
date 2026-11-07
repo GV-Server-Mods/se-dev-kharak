@@ -76,7 +76,7 @@ Content\Data\ModAdjuster\
 ## 4. Other Mod Details & Cross-File Integrity
 
 - When working with Space Engineers mods, always suggest when changes need to be made on related `.sbc` files for things like `BlockVariantGroups`, `BlockCategories`, `BlueprintClasses`, `Components`, `EntityComponents`, etc., so that block changes are fully implemented across all gameplay mechanics.
-- **Build time follows the GVK weld-time formula** [HARD, `GVK_Weapons/tools/apply_build_time.js`]: `BuildTimeSeconds = max(5, round(block integrity / 750))`, where integrity is the sum of the components' integrity. In GVK_Weapons, `node tools/apply_build_time.js --check` lists blocks off the formula and the script without `--check` rewrites them. After changing a block's components, take its build time from the formula. Don't copy or scale another block's time, and don't offer the owner a time off the formula without saying it breaks it. (The owner once picked 9 times another block's build time, then chose the formula value once told, 2026-11-07.)
+- **GVK_Weapons block build times follow the weld-time formula** [HARD, `GVK_Weapons/tools/apply_build_time.js`; no other GVK repo has this tool yet]: `BuildTimeSeconds = max(5, round(block integrity / 750))`, where integrity is the sum of the components' integrity. In GVK_Weapons, `node tools/apply_build_time.js --check` lists blocks off the formula and the script without `--check` rewrites them. After changing a block's components, take its build time from the formula. Don't copy or scale another block's time, and don't offer the owner a time off the formula without saying it breaks it. (The owner once picked 9 times another block's build time, then chose the formula value once told, 2026-11-07.)
 
 ---
 
