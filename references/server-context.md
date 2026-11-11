@@ -156,4 +156,5 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
   - Keep `SpawnStaticTown` false while clearing static grids, so they don't all respawn at once; set it true once the trade stations have spawned.
   - Sandbox booleans are set with `/MES.Debug.ChangeBool.<Name>.<true|false>`; GVK-Derelicts' README lists which encounters read each one.
 - **About 1-2 weeks into the season:** turn on `LargeWrecksEnabled`.
+- **Admin test spawns:** the GVK-Derelicts test spawn groups (`GVK-Test-SpawnGroup-*`) need `GVK_TestSpawns`. Keep it false on the server. In a test world set it true for a test session and false after: while it's true, a random admin spawn (`/MES.SPI` or `/MES.SDE` with no group name) can also pick a test group, though rarely.
 - **SEDB (Discord bridge):** when SEDB relays server messages, it also picks up MES chat sent with `SendToAllPlayers`. To keep NPC chatter out of Discord, use `[SendToAllOnlinePlayers:false]`, `[IgnoreAntennaRequirement:true]` and a very large override range.
