@@ -85,7 +85,7 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 ---
 
 ## 6. Siegable Shield Generators & Siege Drives (Kamikaze's Mod)
-- **Shield Generators**: Replaces vanilla safezones. 250m radius, 1W power, provides free jetpack H2 to owners. Non-siegable in Z0; siegable in Z1–Z3.
+- **Shield Generators**: Replaces vanilla safezones. 250m radius, 1W power, provides free jetpack H2 to owners. Non-siegable in Z0 (all shields) and Z1 (player shields only); siegable in Z2–Z3 (hub #640). Two types, Shield Generator (`SafeZoneBlock`) and Type II (`SafeZoneBlockReskin`, Economy2 DLC), share one Block Restrictions cap of 2 per faction and per player, station only, through the world cfg group `ShieldGenerators` (hub #771).
 - **Siege Drives**: Built on mobile grids within 3km of target Shield Generator. Requires 100 Siege Chips (tokens).
 - **Siege Timing**: 30-min drain time (100% to 0%), 15-min recharge time (0% to 100%). Defenders must destroy the attacking Siege Drive (marked with red laser).
 
