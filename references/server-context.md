@@ -10,7 +10,7 @@
 ## 2. World & Terrain Design
 - **Theme**: Homeworld: Deserts of Kharak single-planet rover-centric PvPvE.
 - **Terrain (Pertam Base)**: Custom graded highways, mountain passes, smoothed dunes, and traversable canyons.
-- **Voxel Resets**: Full voxel resets daily (fills subterranean holes; bases lower than 50m below surface auto-transferred to SPRT).
+- **Voxel Resets**: Full voxel resets daily (fills subterranean holes; station blocks more than 50 m below the surface, 5 m for solar and wind, are switched off and handed to Gaalsien after 5 minutes; ships and drills are exempt: `GVK_Settings/ModScripts/UndergroundMonitor.cs`).
 
 ---
 
@@ -105,10 +105,10 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 ---
 
 ## 8. Logoff, Cleanup & Offline Faction Safezones (FSZ)
-- **Offline Faction Safezones (FSZ)**: Automatically protects faction large grids (> 30 blocks) 60 seconds after the last member logs off. Requires no neutral/enemy grids within 1000m.
+- **Offline Faction Safezones (FSZ)**: Protects a faction's powered grids of 30+ blocks, large or small, about 30 s after the last member logs off; drops about 10 s after one logs back in. Blocked by any other owner's powered 30+ block grid within 1000 m (enemy, ally, NPC or unowned); Territory blocks play no part. `[nozone]` in a grid name opts out (gvk-server-config `DynamicSafeZones_Settings.xml`).
 - **Cleanup Cadence**:
-  - Server cleanup every 1 hour (deletes any grid without a beacon).
-  - Debris sweep every 30 mins (deletes splits < 3 blocks instantly).
+  - Server cleanup every 1 hour (deletes grids without a beacon and ownerless grids, even with a beacon; switches off large projectors and ship welders).
+  - Trash removal every 5 mins (grids under 3 blocks, beacon or not; unowned beaconless grids under 10 blocks over 500 m from players). GridSplitNameKeeper deletes splits of 2 blocks or fewer instantly (gvk-server-config `Essentials.cfg`, `GridSplitNameKeeper.cfg`).
   - Floating objects and ejected connector items deleted immediately.
 - **Auto-Hangar**: Inactive faction grids auto-stored 8 days after the last member logged off (an owner setting; may change).
 
