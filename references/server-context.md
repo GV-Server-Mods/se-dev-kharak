@@ -122,7 +122,7 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 ---
 
 ## 10. Custom Logistics, Manufacturing & Quality of Life
-- **MnM (Manufacturing & Maintenance)**: Custom performant projector welder. 1 active per construct, stationary (< 2 m/s). 1 Uranium = 3x boost for 20m.
+- **MnM (Manufacturing & Maintenance)**: Custom performant projector welder. 1 active per construct, stationary (< 2 m/s). 1 Uranium = 5x boost for 20m (S10 config `3038342658.sbm_AutoRepair/Config.xml`; review in hub #790).
 - **Pipelines**: Point-to-point wireless logistics hubs (`/pipeline toggle`).
 - **Static Drills**: Passive terrain-safe resource wells (50m proximity speed penalty for duplicate ore wells).
 - **Grid Defender**: a module of the Physics Optimizer Torch plugin (the standalone plugin and its `GridDefender.cfg` are pre-merger leftovers), configured in `PhysicsOptimizer.cfg`. Collisions do no damage (bumps under 10 m/s, non-missile impacts above 110 m/s ignored); only unpiloted, non-static grids at 20 m/s or more with 4-150 small or 3-50 large blocks count as missiles and deal impact damage. Values from the 2026-11-03 S10 config sync.
