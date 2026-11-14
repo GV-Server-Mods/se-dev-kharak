@@ -43,11 +43,12 @@
 
 ## 4. Zone Architecture (Distances from Crossroads Tower: 62495, 28019, 37195)
 - **Zone 0 (0 – 20km)**: Safe Starter Hub.
-  - Strict PvE; PvP and cross-faction grinding damage blocked via `GVK_NoPVPZone.cs`.
-  - Heavy production, large assemblers/refineries, ship drills, and heavy military weapons disabled (`LimitedProdZone_*.cs`). Basic assemblers and basic static drills permitted.
+  - Total immunity: `GVK_NoPVPZone.cs` zeroes all damage to blocks on grids inside 20 km, from any source (NPCs included).
+  - Heavy production, large assemblers/refineries, advanced static drills, and sorter weapons disabled (`LimitedProdZone_*.cs`). Basic assemblers, basic static drills, ToolCore ship tools and the Salvage Beam Turret permitted (Zone 0 sorter whitelist, hub #777).
   - Shield Generators are **non-siegable** in Zone 0.
-  - 4km border caution: Zone 1 weapons can fire into the edge of Zone 0.
-- **Zone 1 (20km – 35km)**: Fledgling PvP & Salvage.
+- **Zone 1 (20km – 35km)**: PvE & Salvage Frontier (Season 11; was PvP before).
+  - `GVK_NoPVPZone.cs` blocks player-vs-player damage and cross-faction grinding of player grids; NPCs can still damage player grids, and NPC and unowned grids take damage.
+  - Player Shield Generators are non-siegable in Zone 1; NPC ones stay siegable (GVK_SiegeableSafeZones_NPC unsiegable areas, hub #640).
   - Small derelicts/wrecks spawn for active players. Weapons and ship drills enabled; large-scale production disabled.
 - **Zone 2 (35km – 50km)**: Contested Desert.
   - Medium defended wrecks, cargo ships, and ancient relics. Large-scale production unlocked.
