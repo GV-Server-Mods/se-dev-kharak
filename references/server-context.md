@@ -94,13 +94,10 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 ---
 
 ## 7. KOTH (King of the Hill) Encounters
-- **Sites**: Khar Toba (Z3, all grids), Kalash Site (Z3, small grids), Crashed Starship (Z3, small rovers; just inside the Z3 sphere, checked in game 2026-10-26).
-- **Anti-Abuse Restrictions**:
-  - `KOTHNoThrusters_*.cs`: Shuts off non-NPC thrusters within 3km.
-  - `KOTHNoLargeGrid_*.cs`: Shuts off large grid power within 3km.
-  - `KOTHNoSafezone_*.cs`: Shuts off player safezones and projectors within range.
+- **Sites (Season 11, GVK-KOTH-Plugin `GVK_KOTH.cfg`)**: Khar Toba (Z3, small 50+ and large 100+ blocks, 1,500 m), Kalash Site (Z3, small grids 50+, 1,500 m), Crashed Starship (Z3, small grids 50+, 1,000 m; just inside the Z3 sphere, checked in game 2026-10-26), Scraptown (Z3, on foot only, 132 m, 1 point, no SC or loot; owner, 2026-11-13). All four open at random in four weekly 2-hour slots (Scraptown joined the pool 2026-11-14); the Scraptown KOTH Camp stays open 24/7 (`LinkRange` 0).
+- **Anti-Abuse Restrictions** (per zone in `GVK_KOTH.cfg`): every site switches off player safezones and projectors within 4 km and drills within 3 km. Thrusters off within 3 km: Crashed Starship and Scraptown only. Large-grid power off within 3 km: Kalash Site, Crashed Starship and Scraptown. Before Season 11 the `KOTHNoThrusters_*.cs`, `KOTHNoLargeGrid_*.cs` and `KOTHNoSafezone_*.cs` scripts applied the 3 km rules at every site.
   - No digging/drilling or static blocking around KOTH structures.
-  - More KOTHs may be added in future seasons.
+  - KOTH Camps (outpost stores and spawn points) carry `[GVK-KOTH-Link]` and open only while their site is open, except the Scraptown camp, which stays open.
 
 ---
 
