@@ -45,9 +45,9 @@ Engineering handbook, server context, ModAPI/Torch standards, and SBC/ModAdjuste
 ## Quick Reference & Key Coordinates
 
 - **Crossroads Tower (Origin)**: `GPS:Crossroads Tower:62495:28019:37195:`
-- **Zones (from Crossroads Tower)**:
+- **Zones (MES spheres; ground-level distances from Crossroads Tower)**:
   - **Zone 0 (0 – 20 km)**: Safe Starter Hub. Strict PvE, production/weapons disabled, non-siegable shields.
-  - **Zone 1 (20 – 35 km)**: Fledgling PvP & Salvage. Small derelicts, weapons/drills enabled, large production disabled.
+  - **Zone 1 (20 – 35 km)**: PvE & Salvage (Season 11). Small derelicts, weapons/drills enabled, large production disabled, no PvP in or out.
   - **Zone 2 (35 – 50 km)**: Contested Desert. Medium derelicts, large-scale production unlocked.
   - **Zone 3 (> 50 km)**: Deep Desert / Gaalsien Heart. Heavy military wrecks, Gaalsien convoys, full uncapped warfare.
 - **Shield Generators**: 250m radius, 1W power, non-siegable in Z0 (all) and Z1 (player shields), siegable in Z2–Z3; both types (`SafeZoneBlock`, `SafeZoneBlockReskin`) share 2 per faction, station only (30-min drain, 15-min recharge, requires 100 Siege Chips).

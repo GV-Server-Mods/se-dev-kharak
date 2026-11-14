@@ -42,12 +42,13 @@
 ---
 
 ## 4. Zone Architecture (Distances from Crossroads Tower: 62495, 28019, 37195)
+- **Borders are the MES zone spheres** (GVK_Derelicts `GVK-Universal-Zone.sbc`): Zone 0 is the 20,000 m sphere around Crossroads; Zones 1, 2 and 3 are spheres of 57,043, 49,300 and 34,000 m around the Z3 centre (3569.33, 36772.94, 26952.63). The km ranges below hold at ground level; off the ground a border moves about 1.2 km per km of height. `GVK_NoPVPZone.cs`, the full-size refinery and assembler limits (`LimitedProdZone_Zones.cs`), the `/gvk` HUD and the siege seed all use the spheres; each script mirrors the numbers with a keep-in-sync comment.
 - **Zone 0 (0 – 20km)**: Safe Starter Hub.
   - Total immunity: `GVK_NoPVPZone.cs` zeroes all damage to blocks on grids inside 20 km, from any source (NPCs included).
   - Heavy production, large assemblers/refineries, advanced static drills, and sorter weapons disabled (`LimitedProdZone_*.cs`). Basic assemblers, basic static drills, ToolCore ship tools and the Salvage Beam Turret permitted (Zone 0 sorter whitelist, hub #777).
   - Shield Generators are **non-siegable** in Zone 0.
 - **Zone 1 (20km – 35km)**: PvE & Salvage Frontier (Season 11; was PvP before).
-  - `GVK_NoPVPZone.cs` blocks player-vs-player damage and cross-faction grinding of player grids; NPCs can still damage player grids, and NPC and unowned grids take damage.
+  - `GVK_NoPVPZone.cs` blocks player-vs-player damage and cross-faction grinding of player grids; NPCs can still damage player grids, and NPC and unowned grids take damage. PvP lands only when the target and the attacker are both in Zone 2 or 3, so nobody shoots out of Zone 0/1 at Zone 2 players.
   - Player Shield Generators are non-siegable in Zone 1; NPC ones stay siegable (GVK_SiegeableSafeZones_NPC unsiegable areas, hub #640).
   - Small derelicts/wrecks spawn for active players. Weapons and ship drills enabled; large-scale production disabled.
 - **Zone 2 (35km – 50km)**: Contested Desert.
