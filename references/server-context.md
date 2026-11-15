@@ -123,7 +123,7 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 - **Pipelines**: Point-to-point wireless logistics hubs (`/pipeline toggle`).
 - **Static Drills**: Passive terrain-safe resource wells (50m proximity speed penalty for duplicate ore wells).
 - **Grid Defender**: a module of the Physics Optimizer Torch plugin (the standalone plugin and its `GridDefender.cfg` are pre-merger leftovers), configured in `PhysicsOptimizer.cfg`. Collisions do no damage (bumps under 10 m/s, non-missile impacts above 110 m/s ignored); only unpiloted, non-static grids at 20 m/s or more with 4-150 small or 3-50 large blocks count as missiles and deal impact damage. Values from the 2026-11-03 S10 config sync.
-- **Dynamic Beacon Signatures**: Beacon range scales dynamically (500m up to max) based on mass, speed, weapon tech, and weather. Grids >= 20k blocks marked as `TopGrid` globally.
+- **Dynamic Beacon Signatures**: Beacon range scales dynamically (500m up to max) based on mass, speed, weapon tech, and weather. Season 11 has no TopGrid GPS (owner, 2026-11-15).
 
 ---
 
