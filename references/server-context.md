@@ -10,7 +10,7 @@
 ## 2. World & Terrain Design
 - **Theme**: Homeworld: Deserts of Kharak single-planet rover-centric PvPvE.
 - **Terrain (Pertam Base)**: Custom graded highways, mountain passes, smoothed dunes, and traversable canyons.
-- **Voxel Resets**: Full voxel resets daily (fills subterranean holes; station blocks more than 50 m below the surface, 5 m for solar and wind, are switched off and handed to Gaalsien after 5 minutes; ships and drills are exempt: `GVK_Settings/ModScripts/UndergroundMonitor.cs`).
+- **Voxel Resets**: Full voxel reset nightly, just before the midnight restart (Essentials `Restart 0000`); the server clock is Pacific, so midnight Pacific, 3 am Eastern (owner, 2026-11-15). It fills subterranean holes; station blocks more than 50 m below the surface, 5 m for solar and wind, are switched off and handed to Gaalsien after 5 minutes; ships and drills are exempt: `GVK_Settings/ModScripts/UndergroundMonitor.cs`).
 
 ---
 
