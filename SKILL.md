@@ -38,7 +38,7 @@ Engineering handbook, server context, ModAPI/Torch standards, and SBC/ModAdjuste
 5. **Synchronized Steam Guide & Rules Mirroring**: Whenever changing or creating server rules, zone behaviors, block limits, or rebalances in code, notify the user so changes are mirrored into the Steam Guide and player documentation.
 6. **Rule Simplicity & Low Cognitive Overhead**: Keep rules intuitive with minimal edge-case exceptions.
 7. **Anti-Mod-Bloat Strictness**: Aggressively minimize adding new mod dependencies. Always prefer writing clean, lightweight C# scripts or XML overrides within `GVK_Settings` over pulling in heavy third-party mods.
-8. **Every block has one limit owner**: A commit that adds or renames a block (or adds a mod with blocks to the collection) also adds its owner in the same commit: a Block Restrictions ban or station-only rule, a Ship Core group entry, or the free list in gvk-server-config `tools/block_owners.json`. A new core subtype also goes into the Beacon Limiter seed, the Essentials cleanup line and AutoBeacon. Then run `python tools/check_block_owners.py` in gvk-server-config; it must not report the block. Which layer owns what: gvk-wiki `wiki/systems/block-limit-ownership.md`.
+8. **Every block has one limit owner**: A commit that adds or renames a block (or adds a mod with blocks to the collection) also adds its owner in the same commit: a Block Restrictions ban or station-only rule, a Ship Core group entry, or the free list in gvk-server-config `tools/block_owners.json`. A new core subtype also goes into the Beacon Limiter seed, the Essentials cleanup line, DePatch's core list and AutoBeacon. Then run `python tools/check_block_owners.py` in gvk-server-config; it must not report the block. Which layer owns what: gvk-wiki `wiki/systems/block-limit-ownership.md`.
 
 ---
 
@@ -46,12 +46,12 @@ Engineering handbook, server context, ModAPI/Torch standards, and SBC/ModAdjuste
 
 - **Crossroads Tower (Origin)**: `GPS:Crossroads Tower:62495:28019:37195:`
 - **Zones (MES spheres; ground-level distances from Crossroads Tower)**:
-  - **Zone 0 (0 – 20 km)**: Safe Starter Hub. Strict PvE, production/weapons disabled, non-siegable shields.
+  - **Zone 0 (0 – 20 km)**: Safe Starter Hub. No damage to grids from any source; weapons and large production disabled (basic production works); non-siegable shields.
   - **Zone 1 (20 – 35 km)**: PvE & Salvage (Season 11). Small derelicts, weapons/drills enabled, large production disabled, no PvP in or out.
   - **Zone 2 (35 – 50 km)**: Contested Desert. Medium derelicts, large-scale production unlocked.
   - **Zone 3 (> 50 km)**: Deep Desert / Gaalsien Heart. Heavy military wrecks, Gaalsien convoys, full uncapped warfare.
-- **Shield Generators**: 250m radius, 1W power, non-siegable in Z0 (all) and Z1 (player shields), siegable in Z2–Z3; both types (`SafeZoneBlock`, `SafeZoneBlockReskin`) share 2 per faction, station only (30-min drain, 15-min recharge, requires 100 Siege Chips).
-- **KOTH Sites**: Khar Toba (Z3, all grids), Kalash Site (Z3, small grids), Crashed Starship (Z3, just inside the sphere; small rovers). 3km thruster and large grid shutoffs.
+- **Shield Generators**: 250m radius, 1W power, non-siegable in Z0 (all) and Z1 (player shields), siegable in Z2–Z3; both types (`SafeZoneBlock`, `SafeZoneBlockReskin`) share 2 per faction, station only (30-min drain, 15-min recharge, Siege Chips equal to the charge %, 100 at full).
+- **KOTH Sites**: Khar Toba (Z3, small 50+/large 100+), Kalash Site (Z3, small grids), Crashed Starship (Z3, just inside the sphere; small rovers), Scraptown (Z3, on foot). 3 km thruster shutoff at Crashed Starship and Scraptown; large-grid power off at Kalash, Crashed Starship and Scraptown.
 
 ---
 

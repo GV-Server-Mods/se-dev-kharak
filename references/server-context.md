@@ -21,11 +21,11 @@
   - `DERELICT` (Hostile automated wreckage & defense relics)
   - `KOTH` (King of the Hill objective faction)
 - **Dynamic NPC Alliances**:
-  - `SOBAN` (Kiith Soban, Founder: Soban the Red, Neutral mining Kiith)
+  - `SOBAN` (Kiith Soban, Founder: Soban the Red, mining Kiith)
   - `KHAANEPH` (Khaaneph Scavengers, Clanless southern nomads)
   - Players/Factions choose one-time alignment via `/alliance SOBAN` or `/alliance KHAANEPH`. Territory dynamically expands/contracts based on mission completions and asset destruction.
   - **Territory size** follows each alliance's Influence (`SOBAN_Influence`, `KHAANEPH_Influence`; clamped to 0-1200): under 200 = 10 km, 200-399 = 20 km, 400-599 = 30 km, 600-799 = 40 km, 800-999 = 50 km, 1000 and up = 55 km. Implemented in GVK-Derelicts `GVK-Alliance-Events-ZoneSize.sbc`; every change is announced in chat with its direction.
-- **NPC faction relations** (faction-to-faction, set at world build with the commands in §11). Turrets (vanilla and WeaponCore) use these, and so does MES when it rates one NPC against another, including fixed-gun line of fire and attacker conditions (MES master after 2.75.02, `49b3380`, PR #461 and PR #463). A pair with none set counts as Enemies, so set all 15:
+- **NPC faction relations** (faction-to-faction, set at world build with the commands in §11). Turrets (vanilla and WeaponCore) use these, and so does MES when it rates one NPC against another, including fixed-gun line of fire and attacker conditions (MES 2.75.03 on the Workshop, PR #461 and PR #463). A pair with none set counts as Enemies, so set all 15:
 
   | Pair | Value |
   |---|---|
@@ -45,7 +45,7 @@
 - **Borders are the MES zone spheres** (GVK_Derelicts `GVK-Universal-Zone.sbc`): Zone 0 is the 20,000 m sphere around Crossroads; Zones 1, 2 and 3 are spheres of 57,043, 49,300 and 34,000 m around the Z3 centre (3569.33, 36772.94, 26952.63). The km ranges below hold at ground level; off the ground a border moves about 1.2 km per km of height. `GVK_NoPVPZone.cs`, the full-size refinery and assembler limits (`LimitedProdZone_Zones.cs`), the `/gvk` HUD and the siege seed all use the spheres; each script mirrors the numbers with a keep-in-sync comment.
 - **Zone 0 (0 – 20km)**: Safe Starter Hub.
   - Total immunity: `GVK_NoPVPZone.cs` zeroes all damage to blocks on grids inside 20 km, from any source (NPCs included).
-  - Heavy production, large assemblers/refineries, advanced static drills, and sorter weapons disabled (`LimitedProdZone_*.cs`). Basic assemblers, basic static drills, ToolCore ship tools and the Salvage Beam Turret permitted (Zone 0 sorter whitelist, hub #777).
+  - Heavy production, large assemblers/refineries, advanced static drills, and sorter weapons disabled (`LimitedProdZone_*.cs`). Basic Refinery, Basic and Food assemblers, basic static drills, ToolCore ship tools and the Salvage Beam Turret permitted (Zone 0 sorter whitelist, hub #777).
   - Shield Generators are **non-siegable** in Zone 0.
 - **Zone 1 (20km – 35km)**: PvE & Salvage Frontier (Season 11; was PvP before).
   - `GVK_NoPVPZone.cs` blocks player-vs-player damage and cross-faction grinding of player grids; NPCs can still damage player grids, and NPC and unowned grids take damage. PvP lands only when the target and the attacker are both in Zone 2 or 3, so nobody shoots out of Zone 0/1 at Zone 2 players.
@@ -59,19 +59,19 @@
 
 ---
 
-## 5. Grid Classes, Speeds & Spec Core / Ship Core Framework Limits
+## 5. Grid Classes, Speeds & Ship Core Framework Limits
 A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**), Mobility Points (**MPs**). Core specifics are reference only, subject to change.
 - **Small Grid Core**
 - **Large Grid Light**
-- **Large Grid Medium**
+- **Large Grid Medium** (plus the **Support Grid**: Medium limits with 50 UPs, up to 4 Salvage Beam Turrets, no relic weapons; and the Large and Small **Scrap Cores**, which keep a wreck through one cleanup)
 - **Large Grid Heavy**
 - **Large Grid Fortress**
 - **Large Grid Pipeline**
 - **Large Grid Shield**
 
 ### Point Costs & Hard Caps
-- **Mobility Points (MPs)**: Suspensions (10 MPs, hard cap 20), Thrusters/Hovers (1 MP, hard cap 200). For reference only, subject to change.
-- **Utility Points (UPs)**:
+- **Mobility Points (MPs)**: Suspensions 10 MPs; small thrusters/hovers 1 MP, large ones 3 MP; no per-type cap beyond the core's MP budget (Season 11). For reference only, subject to change.
+- **Utility Points (UPs)** and per-grid caps (Season 11: drills, welders, grinders, pistons, rotors/hinges, production, weapons and the Salvage Beam Turret cost UPs; wind/solar, H2 engines, O2/H2 gens, Shield Generator and Drill Blocker cost none, only a per-grid cap):
   - Wind/Solar
   - Ship Drills (Reg/Adv)
   - Ship Welders
@@ -87,8 +87,8 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 ---
 
 ## 6. Siegable Shield Generators & Siege Drives (Kamikaze's Mod)
-- **Shield Generators**: Replaces vanilla safezones. 250m radius, 1W power, provides free jetpack H2 to owners. Non-siegable in Z0 (all shields) and Z1 (player shields only); siegable in Z2–Z3 (hub #640). Two types, Shield Generator (`SafeZoneBlock`) and Type II (`SafeZoneBlockReskin`, Economy2 DLC), share one Block Restrictions cap of 2 per faction and per player, station only, through the world cfg group `ShieldGenerators` (hub #771).
-- **Siege Drives**: Built on mobile grids within 3km of target Shield Generator. Requires 100 Siege Chips (tokens).
+- **Shield Generators**: Replaces vanilla safezones. 250m radius, 1W power, refills the jetpack H2 of anyone inside (any switched-on safezone does; GVK_Settings `SafezoneH2.cs`). Non-siegable in Z0 (all shields) and Z1 (player shields only); siegable in Z2–Z3 (hub #640). Two types, Shield Generator (`SafeZoneBlock`) and Type II (`SafeZoneBlockReskin`, Economy2 DLC), share one Block Restrictions cap of 2 per faction and per player, station only, through the world cfg group `ShieldGenerators` (hub #771).
+- **Siege Drives**: Built on mobile grids within 3km of target Shield Generator. Costs Siege Chips equal to the shield's charge % (100 at full); an NPC shield costs a flat 25.
 - **Siege Timing**: 30-min drain time (100% to 0%), 15-min recharge time (0% to 100%). Defenders must destroy the attacking Siege Drive (marked with red laser).
 
 ---
@@ -106,7 +106,7 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 - **Cleanup Cadence**:
   - Server cleanup every 1 hour (deletes grids without a beacon and ownerless grids, even with a beacon; switches off large projectors and ship welders).
   - Trash removal every 5 mins (grids under 3 blocks, beacon or not; unowned beaconless grids under 10 blocks over 500 m from players). GridSplitNameKeeper deletes splits of 2 blocks or fewer instantly (gvk-server-config `Essentials.cfg`, `GridSplitNameKeeper.cfg`).
-  - Floating objects and ejected connector items deleted immediately.
+  - Connector Throw Out deletes items instead of ejecting them; other floating objects go at the hourly cleanup (cap 56 loose items).
 - **Auto-Hangar**: Inactive faction grids auto-stored 8 days after the last member logged off (an owner setting; may change).
 
 ---
@@ -123,7 +123,7 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 - **Pipelines**: Point-to-point wireless logistics hubs (`/pipeline toggle`).
 - **Static Drills**: Passive terrain-safe resource wells (50m proximity speed penalty for duplicate ore wells).
 - **Grid Defender**: a module of the Physics Optimizer Torch plugin (the standalone plugin and its `GridDefender.cfg` are pre-merger leftovers), configured in `PhysicsOptimizer.cfg`. Collisions do no damage (bumps under 10 m/s, non-missile impacts above 110 m/s ignored); only unpiloted, non-static grids at 20 m/s or more with 4-150 small or 3-50 large blocks count as missiles and deal impact damage. Values from the 2026-11-03 S10 config sync.
-- **Dynamic Beacon Signatures**: Beacon range scales dynamically (500m up to max) based on mass, speed, weapon tech, and weather. Season 11 has no TopGrid GPS (owner, 2026-11-15).
+- **Dynamic Beacon Signatures**: Beacon range scales dynamically (100 m parked up to 20 km) based on mass, speed, weapon tech, and weather. Season 11 has no TopGrid GPS (owner, 2026-11-15).
 
 ---
 
@@ -154,6 +154,6 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
     - `!player rep change` ignores its amount and always sets 1500.
   - Keep `SpawnStaticTown` false while clearing static grids, so they don't all respawn at once; set it true once the trade stations have spawned.
   - Sandbox booleans are set with `/MES.Debug.ChangeBool.<Name>.<true|false>`; GVK-Derelicts' README lists which encounters read each one.
-- **About 1-2 weeks into the season:** turn on `LargeWrecksEnabled`.
+- **About 1-2 weeks into the season:** turn on `LargeWrecksEnabled`; open Medium Grids at the start of week 2 and Heavy Grids at week 3 in the Beacon Limiter config (restart needed).
 - **Admin test spawns:** the GVK-Derelicts test spawn groups (`GVK-Test-SpawnGroup-*`) need `GVK_TestSpawns`. Keep it false on the server. In a test world set it true for a test session and false after: while it's true, a random admin spawn (`/MES.SPI` or `/MES.SDE` with no group name) can also pick a test group, though rarely.
 - **SEDB (Discord bridge):** when SEDB relays server messages, it also picks up MES chat sent with `SendToAllPlayers`. To keep NPC chatter out of Discord, use `[SendToAllOnlinePlayers:false]`, `[IgnoreAntennaRequirement:true]` and a very large override range.
