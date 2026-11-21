@@ -20,6 +20,7 @@
   - `GAALSIEN` (Kiith Gaalsien, Founder: Khagaan, Hostile NPC Desert Raiders)
   - `DERELICT` (Hostile automated wreckage & defense relics)
   - `KOTH` (King of the Hill objective faction)
+- **Story setting** (owner, 2026-11-15): an alternate Deserts of Kharak before the campaign ends: Gaalsien unbeaten, the Coalition still preparing Operation Khadiim, the old sites (Khar Toba, Kalash Site) and the Jaraci Object (Primary Anomaly) known. `DERELICT` = wrecks of Kharak's old wars plus alien spacecraft pulled down by the Jaraci Object (in the Deserts of Kharak lore, Khar-Toba's reawakened Second Core and its hyperspace interference field; the Coalition doesn't know that yet, so NPCs and the bot treat it as a theory). In story COALITION-KHAANEPH is an uneasy truce (Friendly in game). Write NPC dialogue and lore to match; details in gvk-wiki `wiki/topics/kharak-story.md`.
 - **Dynamic NPC Alliances**:
   - `SOBAN` (Kiith Soban, Founder: Soban the Red, mining Kiith)
   - `KHAANEPH` (Khaaneph Scavengers, Clanless southern nomads)
