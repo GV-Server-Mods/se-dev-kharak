@@ -1,4 +1,4 @@
-# Owner Workflow: MES Contributions, In-Game Tests, Project Rules
+# Owner Workflow: MES Contributions, In-Game Tests, Project Rules, Workshop Publishing
 
 How the GVK server owner wants upstream MES work, in-game tests and GVK project decisions handled. These rules apply on top of the `se-dev-mes-contributing` and `se-dev-mes` skills, and win where they differ. `se-dev-mes-contributing` belongs to VillanorSE: never edit it; record changes here instead.
 
@@ -57,3 +57,19 @@ How the GVK server owner wants upstream MES work, in-game tests and GVK project 
 - **No relative dampening on aircraft escorts**: `[EscortUsesRelativeDampening:]` stays `false` on aircraft autopilots. With it on, a wing that passes its slot turns around and flies backwards to reach it, which looks ridiculous (decided around 2026-10-18).
 - **Server not in production** (as of 2026-10-11): rename spawn groups, behaviors, prefabs and IDs outright, with no legacy aliases or "next wipe" deferrals. Mention a real save-compatibility consequence in one line if it matters for launch. Re-check only if the owner says the server is live.
 - **Hub issues**: record a settled decision on its issue in the same session (comment or tick the box). Add every player-facing change to the season's Steam guide issue (Season 11: GV-Server-Mods/GVK-Settings#645) and say so in the reply.
+
+---
+
+## 4. Workshop Publishing (SEWT)
+
+When the owner says "publish <mod>", update its existing Steam Workshop item with `~/.agents/tools/sewt/Publish-GvkMod.ps1` (SEWorkshopTool 0.7.20, linked to the game's Bin64; owner, 2026-11-21). The script builds with MDK2, checks the deployed copy, runs SEWT's compile check and pushes with `--update-only`, so it never creates an item and keeps visibility, tags and the description as Steam has them.
+
+1. Run `Publish-GvkMod.ps1 <repo or project>` (a dry run). It stops on uncommitted or unpushed work, a stale deployed copy, a missing Workshop ID, or a SEWT failure, and lists the commits since the item's last Workshop update.
+2. Draft the change note from those commits, for players: load `elements-of-style` first. Only what players see or feel; no file, script or subtype names, commit SHAs or issue numbers. Steam BBCode: `[list][*]...[/list]`, one line per change. Write it to a UTF-8 file (no BOM) outside the mod folder.
+3. Show the owner the dry-run summary (item, visibility, tags) and the note, and wait for "go". The owner's go covers that note and that commit only.
+4. Run it again with `-Message <file> -Go`. It tags the commit `workshop-<yyyyMMdd-HHmm>` and pushes the tag.
+5. Log it in the wiki (`log.md`: `publish | <mod> | Workshop <id> @<sha>`) and give the owner the item link.
+
+- New items (no `modinfo.sbmi` Workshop ID) are still published in game, once; later updates use the script.
+- Several deployed folders can share an ID (`GVK Ship Core Framework`, its `_Old` copy and `GVK_ShipCoreFramework`). The script only pushes `Mods\<ProjectName>`, the folder MDK2 deploys to; never point SEWT at another folder by hand.
+- If SEWT breaks after a game update, check for a newer release on GitHub (`Gwindalmir/SEWorkshopTool`) and ask the owner before downloading it.
