@@ -70,7 +70,7 @@ When the owner says "publish <mod>", update its existing Steam Workshop item wit
 4. Run it again with `-Message <file> -Go`. It tags the commit `workshop-<yyyyMMdd-HHmm>` and pushes the tag.
 5. Log it in the wiki (`log.md`: `publish | <mod> | Workshop <id> @<sha>`) and give the owner the item link.
 
-- `-Visibility Public` (or `Unlisted`, `FriendsOnly`, `Private`) changes visibility, only when the owner asks. SEWT can't rename an item; titles are edited on Steam.
+- `-Visibility Public` (or `Unlisted`, `FriendsOnly`, `Private`) changes visibility, only when the owner asks. Never suggest making an unlisted GVK item public: they borrow other authors' content and stay unlisted under fair-use agreements with those authors (owner, 2026-11-21). SEWT can't rename an item; titles are edited on Steam.
 - New items (no `modinfo.sbmi` Workshop ID) are still published in game, once; later updates use the script.
 - SEWT refuses an item another Steam account owns ("Owner mismatch"); only that account can update it.
 - Several deployed folders can share an ID (`GVK Ship Core Framework`, its `_Old` copy and `GVK_ShipCoreFramework`). The script only pushes `Mods\<ProjectName>`, the folder MDK2 deploys to; never point SEWT at another folder by hand.
