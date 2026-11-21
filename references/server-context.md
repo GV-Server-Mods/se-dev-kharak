@@ -114,7 +114,7 @@ A grid's class is determined by its Core Beacon. Points: Utility Points (**UPs**
 ## 9. Economy, CUs, RUs & Tech Progression
 - **CUs (Construction Units)** & **RUs (Resource Units)**: Core ingots for advanced weaponry and tech.
 - **Tech Components**: `[Tech] Igniter`, `[Tech] Grav. Reflector`, `[Tech] Bolt Carrier`, `[Tech] Gun Cradle`, `[Tech] Launch Assem.`, `[Tech] Particle Emit.`, `[Tech] Data Core`. `Turbo Encabulator` is not one: no block, recipe or store uses it; it only drops from vote rewards and NPC cruiser loot (checked 2026-11-14).
-- **Scrap Refining**: NPC tech grinds into `[Scrap]` Tech; 100% refined into CUs for free at Coalition Base (Z0), Skyport, Mastodon, Sevastopol, or Coalition mobile trade cruisers.
+- **Scrap Refining**: NPC tech grinds into `[Scrap]` Tech; refined into exactly 75% of the tech's assembler cost in CUs and metals (owner, 2026-11-21) for free at Coalition Base (Z0), Skyport, Mastodon, Sevastopol, or Coalition mobile trade cruisers.
 
 ---
 
