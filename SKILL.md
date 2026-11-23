@@ -39,6 +39,7 @@ Engineering handbook, server context, ModAPI/Torch standards, and SBC/ModAdjuste
 6. **Rule Simplicity & Low Cognitive Overhead**: Keep rules intuitive with minimal edge-case exceptions.
 7. **Anti-Mod-Bloat Strictness**: Aggressively minimize adding new mod dependencies. Always prefer writing clean, lightweight C# scripts or XML overrides within `GVK_Settings` over pulling in heavy third-party mods.
 8. **Every block has one limit owner**: A commit that adds or renames a block (or adds a mod with blocks to the collection) also adds its owner in the same commit: a Block Restrictions ban or station-only rule, a Ship Core group entry, or the free list in gvk-server-config `tools/block_owners.json`. A new core subtype also goes into the Beacon Limiter seed, the Essentials cleanup line, DePatch's core list and AutoBeacon. Then run `python tools/check_block_owners.py` in gvk-server-config; it must not report the block. Which layer owns what: gvk-wiki `wiki/systems/block-limit-ownership.md`.
+9. **Keen is a company, not a person** (owner, 2026-11-22): Keen Software House, which makes Space Engineers. Write "Keen", "Keen's" or "Keen Software House", and "it" or "its" for it, never "he" or "his" ("Keen's icons", not "his icons"). The people are mod authors such as Digi, Zantulo and Enenra.
 
 ---
 
