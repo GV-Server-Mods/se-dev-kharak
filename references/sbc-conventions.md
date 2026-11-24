@@ -38,6 +38,11 @@ Content\Data\
 - **Symptom**: Secondary definitions, actions, triggers, or components fail to load at runtime with missing profile errors (e.g., MES reports `Could Not Load Action Profile From Trigger: : [SubtypeId]`).
 - **Rule**: Every distinct definition, component, trigger, or action MUST be encapsulated within its own standalone `<EntityComponent xsi:type="...">` (or `<Definition xsi:type="...">`) block with its own dedicated `<Id>`. Never combine multiple `<SubtypeId>` tags inside a single `<Id>` block.
 
+### Component `Count` Caps at 65,535 [HARD]
+- A block's `<Component Subtype="..." Count="..."/>` is read as a `ushort` (`MyObjectBuilder_CubeBlockDefinition.CubeBlockComponent.Count`), so one entry holds at most 65,535.
+- **Symptom**: a larger value throws `OverflowException: Value was either too large or too small for a UInt16` in the definitions read, and the game skips the **whole mod** at world load with `MOD_CRITICAL_ERROR ... MOD SKIPPED, Cannot load definition file`. The file it names is just where the loader stopped, not the one at fault: search `SpaceEngineers.log` for `Exception during objectbuilder read` for the real error.
+- **Rule**: for more than 65,535 of one component, split it into several entries of the same subtype (vanilla repeats subtypes the same way). Before a build, check that no `Count` is above 65,535.
+
 ---
 
 ## 3. ModAdjuster File Layout Convention
