@@ -86,8 +86,8 @@ Content\Data\ModAdjuster\
   1. **Size** = the block's volume in large-grid cells (small-grid cells ÷ 125): a large 1x2x3 is 6, a small 2x2x10 is 0.32.
   2. **Target integrity** = a straight line through (0.032, 2,500) and (1, 25,000) below size 1, and through (1, 25,000) and (125, 400,000) from 1 up, rounded. The end points are the smallest and largest weapons in the workbook.
   3. **Each component's new count** = its share of the old recipe's integrity × target integrity ÷ that component's integrity, rounded up to 2 significant figures (whole numbers below 100, tens below 1,000, hundreds above). Prototech components (Panel, Circuitry) keep their counts and are left out of the shares.
-  4. **Build time** = the weld-time formula above, from the new integrity. Component integrities: `GVK_Weapons/studio/data/components_data.js`.
-  - Example: the Crusader recipe at the torpedo launcher's sizes gives large 55 steel plates (first) / 22 metal grids / 11 large tubes / 110 motors / 14 interior plates / 220 computers / 220 construction / 220 steel plates (last), integrity 40,121, 53 s; small 13/6/3/26/4/51/51/51, integrity 9,194, 12 s (GVK_Weapons `CubeBlocks_Missiles_Torpedoes.sbc`). The workbook's old sizes reproduce the Crusader's own counts exactly.
+  4. **Build time** = the weld-time formula above, from the finished block's integrity with the Prototech components counted (`apply_build_time.js`). The workbook's own build time column uses the target integrity without Prototech; don't use it (owner, 2026-11-26, after it gave the torpedo launcher 53 s against the formula's 55 s). Component integrities: `GVK_Weapons/studio/data/components_data.js`.
+  - Example: the Crusader recipe at the torpedo launcher's sizes gives large 55 steel plates (first) / 22 metal grids / 11 large tubes / 110 motors / 14 interior plates / 220 computers / 220 construction / 220 steel plates (last), target integrity 40,121, block integrity 41,380 with Prototech, 55 s; small 13/6/3/26/4/51/51/51, target 9,194, block 9,855, 13 s (GVK_Weapons `CubeBlocks_Missiles_Torpedoes.sbc`). The workbook's old sizes reproduce the Crusader's own counts exactly.
 
 ---
 
